@@ -1,8 +1,27 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useAuthenticator, Button, Heading, View } from '@aws-amplify/ui-react';
+import SideNav from './SideNav';
+import { Box, CssBaseline, ThemeProvider, Typography, useTheme } from '@mui/material';
+import AppHeader from './AppHeader';
 
 export default function Layout() {
+
+  /** @type {import("@mui/material").SxProps} */
+  const styles = {
+    container: {
+        display: 'flex',
+        bgcolor: 'neutral.light',
+        height: '100%'
+    },
+    mainSection: {
+      p: 1,
+      width: '100%',
+      height: '100%',
+      overflow: 'auto',
+    }
+  }
+
   const { route, signOut, user } = useAuthenticator((context) => [
     context.route,
     context.signOut,
@@ -10,26 +29,25 @@ export default function Layout() {
   ]);
   const navigate = useNavigate();
 
+  const theme = useTheme();
+
   function logOut() {
     signOut();
     navigate('/login');
   }
   return (
     <>
-      <nav>
-        <Button onClick={() => navigate('/')}>Home</Button>
-        {route !== 'authenticated' ? (
-          <Button onClick={() => navigate('/login')}>Login</Button>
-        ) : (
-          <Button onClick={() => logOut()}>Logout</Button>
-        )}
-      </nav>
-      <Heading level={2}>Plaid AWS Quickstart</Heading>
-      <View>
-        {route === 'authenticated' ? `Welcome ${user.signInDetails?.loginId}` : 'Please Login!'}
-      </View>
+      <ThemeProvider theme={theme}>
+        <CssBaseline/>
+        <AppHeader/>
+        <Box sx={styles.container}>
+          <SideNav/>
+          <Box component={'main'} sx={styles.mainSection}>
+            <Outlet />
+          </Box>
+        </Box>
+      </ThemeProvider>
 
-      <Outlet />
     </>
   );
 }
