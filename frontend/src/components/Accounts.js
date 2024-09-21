@@ -35,35 +35,37 @@ export default function Accounts({ id, updateAccounts }) {
   }, []);
 
   return (
-    <Table highlightOnHover={true} variation="striped">
-      <TableHead>
-        <TableRow>
-          <TableCell as="th">Name</TableCell>
-          <TableCell as="th">Balances</TableCell>
-          <TableCell as="th">Type</TableCell>
-          <TableCell as="th">Subtype</TableCell>
-          <TableCell as="th">Mask</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {loading ? (
-        <TableRow>
-          <TableCell colSpan="5">
-            <Loader/>
-          </TableCell>
-        </TableRow>
-        ) : (
-          accounts.length ? (
-            accounts.map((account) => {
-              return <Account key={account.account_id} account={account}/>;
-            })
-          ) : (
-            <TableRow>
-              <TableCell colSpan="5">No accounts found</TableCell>
-            </TableRow>
-          )
-        )}
-      </TableBody>
-    </Table>
+    <p>Account Found!!</p>
+    // <Table highlightOnHover={true} variation="striped">
+    //   <TableHead>
+    //     <TableRow>
+    //       <TableCell as="th">Name</TableCell>
+    //       <TableCell as="th">Balances</TableCell>
+    //       <TableCell as="th">Type</TableCell>
+    //       <TableCell as="th">Subtype</TableCell>
+    //       <TableCell as="th">Mask</TableCell>
+    //     </TableRow>
+    //   </TableHead>
+    //   <TableBody>
+    //     {loading ? (
+    //     <TableRow>
+    //       <TableCell colSpan="5">
+    //         <Loader/>
+    //       </TableCell>
+    //     </TableRow>
+    //     ) : (
+    //       accounts.length ? (
+    //         accounts.map((account) => {
+    //           return <p>Account Found!!</p>;
+    //           // return <Account key={account.account_id} account={account}/>;
+    //         })
+    //       ) : (
+    //         <TableRow>
+    //           <TableCell colSpan="5">No accounts found</TableCell>
+    //         </TableRow>
+    //       )
+    //     )}
+    //   </TableBody>
+    // </Table>
   )
 }

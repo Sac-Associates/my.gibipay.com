@@ -17,13 +17,13 @@ export default function Plaid({ getItems }) {
     try {
       const { body } = await get({
         apiName,
-        path: '/v1/tokens'
+        path: '/link/token/create'
       }).response;
       const data = await body.json();
       logger.debug('GET /v1/tokens response:', data);
       setToken(data.link_token);
     } catch (err) {
-      logger.error('unable to create link token:', err);
+      logger.error('unable to create link token: ', err);
     }
   };
 
