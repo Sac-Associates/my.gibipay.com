@@ -1,4 +1,4 @@
-# AWS Plaid Demo
+# GibiPay Dashboard
 
 ### Table of contents
 
